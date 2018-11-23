@@ -2,6 +2,7 @@ package com.example.ewd.diagram.view;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +51,9 @@ public class DoctorFragment extends android.support.v4.app.Fragment {
 
     @BindView(R.id.name)
     TextView nameTextView;
+
+    @BindView(R.id.edit)
+    Button editButton;
 
     private String userId;
     private String sessionKey;
@@ -100,7 +105,6 @@ public class DoctorFragment extends android.support.v4.app.Fragment {
 
 
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -121,10 +125,10 @@ public class DoctorFragment extends android.support.v4.app.Fragment {
             }
         });
 
+        setupEditButton();
 
 
     }
-
 
     /**
      * populateUI would be called to populate the UI w
@@ -148,10 +152,25 @@ public class DoctorFragment extends android.support.v4.app.Fragment {
 
     }
 
+    /**
+     * Method to setup edit button
+     */
+    public void setupEditButton() {
 
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                // Going to EditDoctor Activity
+                Intent navigationIntent = new Intent(getActivity(), EditDoctorActivity.class);
+                navigationIntent.putExtra("userId", userId);
+                navigationIntent.putExtra("token", sessionKey);
 
+                startActivity(navigationIntent);
 
+            }
+        });
 
+    }
 
 }

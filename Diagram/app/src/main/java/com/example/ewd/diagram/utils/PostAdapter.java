@@ -26,6 +26,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostAdapterVie
     private Context context;
 
     private int[] colors = {R.color.colorPrimary, R.color.colorAmber};
+    private int[] imgs = {R.mipmap.patient, R.mipmap.doctor};
 
     //Handling Clicks
     public interface ListItemClickListener {
@@ -108,12 +109,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostAdapterVie
         int colorIndex;
         String userTypeChar;
         colorIndex = post.getUserType().equals("patient") ? 0 : 1;
-        userTypeChar = post.getUserType().equals("patient")? "P" : "D";
+
+        /*userTypeChar = post.getUserType().equals("patient")? "P" : "D";
+
 
         TextDrawable drawable = TextDrawable.builder()
                 .buildRoundRect( userTypeChar,
                         context.getResources().getColor(colors[colorIndex]), 70);
         holder.userTypeImageView.setImageDrawable(drawable);
+
+        */
+
+        holder.userTypeImageView.setImageResource(imgs[colorIndex]);
+
+
+
 
     }
     @Override

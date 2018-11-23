@@ -30,7 +30,9 @@
         <activity
             android:name=".view.NavigationActivity"
             android:label="@string/title_activity_navigation" />
-        <activity android:name=".view.CommentsActivity"></activity>
+        <activity android:name=".view.CommentsActivity" />
+        <activity android:name=".view.EditPatientActivity" />
+        <activity android:name=".view.EditDoctorActivity"></activity>
     </application>
 
 </manifest>

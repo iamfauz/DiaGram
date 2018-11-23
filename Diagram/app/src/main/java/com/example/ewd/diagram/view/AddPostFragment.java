@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -159,5 +160,13 @@ public class AddPostFragment extends Fragment {
         });
 
     }
+
+
+
+    /**
+     * Hiding keyboard when pressed anywhere else on the screen
+     */
+
+
 
 }

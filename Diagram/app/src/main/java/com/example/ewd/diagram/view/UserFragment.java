@@ -2,6 +2,7 @@ package com.example.ewd.diagram.view;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +61,8 @@ public class UserFragment extends Fragment {
     @BindView(R.id.conditions_body)
     TextView conditionsTextView;
 
+    @BindView(R.id.edit)
+    Button editButton;
 
 
     private String userId;
@@ -68,6 +72,7 @@ public class UserFragment extends Fragment {
     private UserDatabase mDb;
 
     private int[] colors = {R.color.colorLightGreen, R.color.colorAmber, R.color.colorYellow};
+    private int[] imgs = {R.mipmap.patient, R.mipmap.doctor};
 
     public UserFragment() {
         // Required empty public constructor
@@ -129,6 +134,7 @@ public class UserFragment extends Fragment {
             }
         });
 
+        setupEditButton();
 
     }
 
@@ -144,17 +150,40 @@ public class UserFragment extends Fragment {
 
         }
 
-        //Circular Icon
+        /*Circular Icon
         TextDrawable drawable = TextDrawable.builder()
                 .buildRoundRect( "P",
                         getActivity().getResources().getColor(colors[0]), 150);
-        userTypeImageView.setImageDrawable(drawable);
+        userTypeImageView.setImageDrawable(drawable);*/
+
+        userTypeImageView.setImageResource(imgs[0]);
 
         userNameTextView.setText(user.getUsername());
         nameTextView.setText(user.getFirstName() + " " + user.getLastName());
         medicationsTextView.setText(user.getMedications());
         recentProceduresTextView.setText(user.getRecentProcedures());
         conditionsTextView.setText(user.getConditions());
+
+    }
+
+    /**
+     * Method to setup edit button
+     */
+    public void setupEditButton() {
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Going to EditDoctor Activity
+                Intent navigationIntent = new Intent(getActivity(), EditPatientActivity.class);
+                navigationIntent.putExtra("userId", userId);
+                navigationIntent.putExtra("token", sessionKey);
+
+                startActivity(navigationIntent);
+
+            }
+        });
 
     }
 
