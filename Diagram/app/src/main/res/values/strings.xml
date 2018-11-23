@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">DiaGram</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_timeline">Timeline</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_activity_navigation">DiaGram</string>
+    <string name="title_add_post">New Post</string>
+
+
+</resources>
