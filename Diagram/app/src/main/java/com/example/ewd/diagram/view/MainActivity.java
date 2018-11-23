@@ -4,6 +4,7 @@ package com.example.ewd.diagram.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
     private UserDatabase mDb;
 
+    SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +64,17 @@ public class MainActivity extends AppCompatActivity {
 
         //Data Binding using butterknife
         ButterKnife.bind(this);
+
+        sp = getSharedPreferences("login",MODE_PRIVATE);
+        //If logged in , go to Navigation Activity Directly
+        if(sp.getBoolean("logged",false)){
+            goToNavigationActivity(
+                    sp.getString("jwt",""),
+                    sp.getString("userId",""),
+                    sp.getString("userType","")
+            );
+        }
+
 
         //Get db instance
         mDb = UserDatabase.getInstance(getApplicationContext());
@@ -125,13 +139,15 @@ public class MainActivity extends AppCompatActivity {
                             //Adding user to local db
                             addUserToDb(authResponse.getUser());
 
-                            // Going to Navigation Activity
-                            Intent navigationIntent = new Intent(MainActivity.this, NavigationActivity.class);
-                            navigationIntent.putExtra("token", authResponse.getJwt());
-                            navigationIntent.putExtra("userId", authResponse.getUser().getId());
-                            navigationIntent.putExtra("userType", authResponse.getUser().getUserType());
+                            //Saving Login session info
+                            sp.edit().putBoolean("logged",true).apply();
+                            sp.edit().putString("jwt",authResponse.getJwt()).apply();
+                            sp.edit().putString("userId",authResponse.getUser().getId()).apply();
+                            sp.edit().putString("userType",authResponse.getUser().getUserType()).apply();
 
-                            startActivity(navigationIntent);
+                            // Going to Navigation Activity
+                            goToNavigationActivity(authResponse.getJwt(), authResponse.getUser().getId(),
+                                    authResponse.getUser().getUserType());
 
                         } else {
 
@@ -185,6 +201,24 @@ public class MainActivity extends AppCompatActivity {
                 mDb.userDao().insertUser(user);
             }
         });
+
+    }
+
+
+    /**
+     * Method that navigates to the navigation Activity
+     *
+     * @param token
+     * @param userId
+     */
+    public void goToNavigationActivity(String token, String userId, String userType) {
+
+        Intent navigationIntent = new Intent(MainActivity.this, NavigationActivity.class);
+        navigationIntent.putExtra("token", token);
+        navigationIntent.putExtra("userId", userId);
+        navigationIntent.putExtra("userType", userType);
+
+        startActivity(navigationIntent);
 
     }
 

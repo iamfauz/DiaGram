@@ -70,8 +70,6 @@ public class UserFragment extends Fragment {
 
     // Member variable for the Database
     private UserDatabase mDb;
-
-    private int[] colors = {R.color.colorLightGreen, R.color.colorAmber, R.color.colorYellow};
     private int[] imgs = {R.mipmap.patient, R.mipmap.doctor};
 
     public UserFragment() {
@@ -149,15 +147,7 @@ public class UserFragment extends Fragment {
             return;
 
         }
-
-        /*Circular Icon
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRoundRect( "P",
-                        getActivity().getResources().getColor(colors[0]), 150);
-        userTypeImageView.setImageDrawable(drawable);*/
-
         userTypeImageView.setImageResource(imgs[0]);
-
         userNameTextView.setText(user.getUsername());
         nameTextView.setText(user.getFirstName() + " " + user.getLastName());
         medicationsTextView.setText(user.getMedications());

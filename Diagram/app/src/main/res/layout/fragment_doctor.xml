@@ -59,7 +59,7 @@
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/ic_person_add_amber_24dp" />
+                app:srcCompat="@drawable/ic_person_add_black_24dp" />
 
             <TextView
                 android:id="@+id/username"

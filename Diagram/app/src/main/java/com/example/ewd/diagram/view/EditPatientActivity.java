@@ -70,7 +70,7 @@ public class EditPatientActivity extends AppCompatActivity {
     private String userId;
     private String sessionKey;
 
-    private int[] colors = {R.color.colorPrimary, R.color.colorAmber, R.color.colorYellow};
+    private int[] imgs = {R.mipmap.patient, R.mipmap.doctor};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,12 +115,8 @@ public class EditPatientActivity extends AppCompatActivity {
 
         }
         this.user = user;
-        //Circular Icon
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRoundRect( "P",
-                        getApplicationContext().getResources().getColor(colors[0]), 150);
-        userTypeImageView.setImageDrawable(drawable);
 
+        userTypeImageView.setImageResource(imgs[0]);
         firstNameEditText.setText(user.getFirstName());
         lastNameEditText.setText(user.getLastName());
         medicationsEditTextView.setText(user.getMedications());

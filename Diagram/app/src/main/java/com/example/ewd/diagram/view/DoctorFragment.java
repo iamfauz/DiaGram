@@ -61,7 +61,7 @@ public class DoctorFragment extends android.support.v4.app.Fragment {
     // Member variable for the Database
     private UserDatabase mDb;
 
-    private int[] colors = {R.color.colorPrimary, R.color.colorAmber, R.color.colorYellow};
+    private int[] imgs = {R.mipmap.patient, R.mipmap.doctor};
 
     public DoctorFragment() {
         // Required empty public constructor
@@ -140,12 +140,9 @@ public class DoctorFragment extends android.support.v4.app.Fragment {
             return;
 
         }
-        //Circular Icon
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRoundRect( "D",
-                        getActivity().getResources().getColor(colors[1]), 150);
-        userTypeImageView.setImageDrawable(drawable);
 
+
+        userTypeImageView.setImageResource(imgs[1]);
         userNameTextView.setText(user.getUsername());
         nameTextView.setText(user.getFirstName() + " " + user.getLastName());
 
