@@ -18,6 +18,9 @@ public class Post  {
     @SerializedName("body")
     @Expose
     private String body;
+    @SerializedName("userId")
+    @Expose
+    private String userId;
     @SerializedName("userType")
     @Expose
     private String userType;
@@ -66,11 +69,11 @@ public class Post  {
     }
 
 
+    public String getUserId() {
+        return userId;
+    }
 
-
-
-
-
-
-
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

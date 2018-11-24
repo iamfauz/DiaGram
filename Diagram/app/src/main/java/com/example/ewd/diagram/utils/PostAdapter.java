@@ -31,13 +31,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostAdapterVie
     public interface ListItemClickListener {
 
         void onListItemClick(Post post);
+        void onProfileClick(String userId, String userType);
 
     }
 
     private ListItemClickListener mOnclickListener;
 
 
-    public PostAdapter(ListItemClickListener listener , Context context) {
+    public PostAdapter(ListItemClickListener listener, Context context) {
 
         mOnclickListener = listener;
         this.context = context;
@@ -65,6 +66,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostAdapterVie
             super(view);
 
             ButterKnife.bind(this, view);
+            userTypeImageView.setOnClickListener(this);
             view.setOnClickListener(this);
 
         }
@@ -73,7 +75,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostAdapterVie
         public void onClick(View v) {
 
             int position = getAdapterPosition();
-            mOnclickListener.onListItemClick(mPostList.get(position));
+
+            if (v == userTypeImageView)
+                mOnclickListener.onProfileClick(mPostList.get(position).getUserId(),
+                        mPostList.get(position).getUserType());
+            else
+                mOnclickListener.onListItemClick(mPostList.get(position));
 
         }
 
@@ -111,8 +118,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostAdapterVie
 
 
     }
+
     @Override
-    public int getItemCount () {
+    public int getItemCount() {
 
         if (mPostList == null)
             return 0;
@@ -121,13 +129,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostAdapterVie
     }
 
 
-    public void setPostsData (List<Post> postList) {
+    public void setPostsData(List<Post> postList) {
 
         mPostList = postList;
         notifyDataSetChanged();
     }
 
-    public List<Post> getPosts () {
+    public List<Post> getPosts() {
         return mPostList;
     }
 }

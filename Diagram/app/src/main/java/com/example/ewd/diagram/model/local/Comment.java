@@ -8,6 +8,9 @@ public class Comment {
     @SerializedName("_id")
     @Expose
     private String id;
+    @SerializedName("userId")
+    @Expose
+    private String userId;
     @SerializedName("userType")
     @Expose
     private String userType;
@@ -39,4 +42,11 @@ public class Comment {
         this.body = body;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

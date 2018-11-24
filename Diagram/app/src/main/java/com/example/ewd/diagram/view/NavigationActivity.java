@@ -72,6 +72,8 @@ public class NavigationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_navigation);
 
         ButterKnife.bind(this);
+        setupToolbar();
+
         Intent intent = getIntent();
         token = intent.getStringExtra("token");
         userId = intent.getStringExtra("userId");
@@ -91,8 +93,8 @@ public class NavigationActivity extends AppCompatActivity {
         viewPagerAdapter = new ViewPagerAdapter(NavigationActivity.this.getSupportFragmentManager());
 
         //Creating instances of all fragments
-        FeedFragment feedFragment = FeedFragment.newInstance(userId, token);
-        TimelineFragment timelineFragment = TimelineFragment.newInstance(userId, token);
+        FeedFragment feedFragment = FeedFragment.newInstance(userId, token, userType);
+        TimelineFragment timelineFragment = TimelineFragment.newInstance(userId, token, userType);
         UserFragment userFragment = UserFragment.newInstance(userId, token);
         DoctorFragment doctorFragment = DoctorFragment.newInstance(userId, token);
         AddPostFragment addPostFragment = AddPostFragment.newInstance(userId, token);
@@ -112,6 +114,18 @@ public class NavigationActivity extends AppCompatActivity {
         viewPager.setPagingEnabled(false);
         viewPager.setAdapter(viewPagerAdapter);
 
+    }
+
+    /**
+     * Method to setup Toolbar
+     */
+    public void setupToolbar(){
+
+        //Seeting up app logo on toolbar
+        getSupportActionBar().setTitle(" Diagram");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.ic_local_hospital_dark_24dp);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
 

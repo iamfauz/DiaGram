@@ -19,24 +19,26 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".view.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:noHistory="true"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.RegistrationActivity"
-            android:noHistory="true"/>
+        <activity
+            android:name=".view.RegistrationActivity"
+            android:noHistory="true" />
         <activity
             android:name=".view.NavigationActivity"
-            android:label="@string/title_activity_navigation"
-            />
-        <activity android:name=".view.CommentsActivity" />
+            android:label="@string/title_activity_navigation" />
+        <activity android:name=".view.CommentsActivity"
+            android:label="Comments"/>
         <activity android:name=".view.EditPatientActivity" />
-        <activity android:name=".view.EditDoctorActivity"></activity>
+        <activity android:name=".view.EditDoctorActivity" />
+        <activity android:name=".view.OtherPatientActivity" />
+        <activity android:name=".view.OtherDoctorActivity"></activity>
     </application>
 
 </manifest>

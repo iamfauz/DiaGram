@@ -26,19 +26,28 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentA
 
     private Context context;
 
-    private int[] colors = {R.color.colorLightGreen, R.color.colorAmber};
+    private int[] imgs = {R.mipmap.patient, R.mipmap.doctor};
+
+    //Handling Clicks
+    public interface ListItemClickListener {
+
+        void onProfileClick(String userId, String userType);
+
+    }
+
+    private ListItemClickListener mOnclickListener;
 
 
-    public CommentAdapter(Context context) {
+    public CommentAdapter(ListItemClickListener listener, Context context) {
 
-
+        mOnclickListener = listener;
         this.context = context;
 
     }
 
 
     //ViewHolder Class for normal
-    public class CommentAdapterViewHolder extends RecyclerView.ViewHolder {
+    public class CommentAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //Views
         public @BindView(R.id.username)
@@ -57,7 +66,17 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentA
             super(view);
 
             ButterKnife.bind(this, view);
+            userTypeImageView.setOnClickListener(this);
 
+
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            int position = getAdapterPosition();
+            mOnclickListener.onProfileClick(mCommentList.get(position).getUserId(),
+                    mCommentList.get(position).getUserType());
 
         }
 
@@ -85,17 +104,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentA
         Comment comment = mCommentList.get(position);
         holder.comment = comment;
         holder.bodyTextView.setText(comment.getBody());
+        holder.userNameTextView.setText(comment.getUserType().equals("patient")? "Patient" : "Doctor");
 
         //Circular Icon
-        int colorIndex;
-        String userTypeChar;
-        colorIndex = comment.getUserType().equals("patient") ? 0 : 1;
-        userTypeChar = comment.getUserType().equals("patient")? "P" : "D";
-
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRoundRect(userTypeChar,
-                        context.getResources().getColor(colors[colorIndex]), 70);
-        holder.userTypeImageView.setImageDrawable(drawable);
+        int imgIndex;
+        imgIndex = comment.getUserType().equals("patient") ? 0 : 1;
+        holder.userTypeImageView.setImageResource(imgs[imgIndex]);
 
     }
 

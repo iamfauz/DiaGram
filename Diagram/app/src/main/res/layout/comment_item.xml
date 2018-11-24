@@ -40,9 +40,8 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fawaz Ahmed"
-                android:textStyle="bold"
-                android:textSize="12sp"
+                android:text="Doctor"
+                android:textSize="10sp"
                 android:paddingBottom="1dp"
 
 
@@ -58,9 +57,9 @@
 
 
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-
+                android:textColor="@color/colorDarkGrey"
                 android:layout_marginBottom="6dp"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
 
            />
 

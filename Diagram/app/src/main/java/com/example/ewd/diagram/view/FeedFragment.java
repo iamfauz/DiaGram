@@ -44,6 +44,7 @@ public class FeedFragment extends Fragment implements PostAdapter.ListItemClickL
     // The fragment initialization parameters
     private static final String USER_ID = "USER_ID";
     private static final String SESSION_KEY = "SESSION_KEY";
+    private static final String USER_TYPE = "USER_TYPE";
 
 
     @BindView(R.id.recycler_view_posts)
@@ -56,6 +57,7 @@ public class FeedFragment extends Fragment implements PostAdapter.ListItemClickL
 
     private String userId;
     private String sessionKey;
+    private String userType;
 
     public FeedFragment() {
         // Required empty public constructor
@@ -70,11 +72,12 @@ public class FeedFragment extends Fragment implements PostAdapter.ListItemClickL
      * @return A new instance of fragment FeedFragment.
      */
 
-    public static FeedFragment newInstance(String userId, String sessionKey) {
+    public static FeedFragment newInstance(String userId, String sessionKey, String userType) {
         FeedFragment fragment = new FeedFragment();
         Bundle args = new Bundle();
         args.putString(USER_ID, userId);
         args.putString(SESSION_KEY, sessionKey);
+        args.putString(USER_TYPE, userType);
         fragment.setArguments(args);
         return fragment;
     }
@@ -85,6 +88,7 @@ public class FeedFragment extends Fragment implements PostAdapter.ListItemClickL
         if (getArguments() != null) {
             userId = getArguments().getString(USER_ID);
             sessionKey = getArguments().getString(SESSION_KEY);
+            userType = getArguments().getString(USER_TYPE);
         }
 
 
@@ -207,11 +211,31 @@ public class FeedFragment extends Fragment implements PostAdapter.ListItemClickL
         // Launch CommentsActivity adding the itemId as an extra in the intent
         Intent intent = new Intent(getActivity(), CommentsActivity.class);
         intent.putExtra("postId", post.getId());
-        intent.putExtra("userType", "patient"); //TODO - this is hardcoded right now need to change
+        intent.putExtra("postUserId", post.getUserId());
+        intent.putExtra("userId", userId);
+        intent.putExtra("userType", userType);
+        intent.putExtra("postUserType", post.getUserType());
+        intent.putExtra("token", sessionKey);
 
         startActivity(intent);
 
     }
 
+    @Override
+    public void onProfileClick(String userId, String userType){
+
+        // Launch CommentsActivity adding the itemId as an extra in the intent
+        Intent intent = null;
+
+        if(userType.equals("patient"))
+            intent = new Intent(getActivity(), OtherPatientActivity.class);
+        else
+            intent = new Intent(getActivity(), OtherDoctorActivity.class);
+
+        intent.putExtra("userId", userId);
+        intent.putExtra("token", sessionKey);
+        startActivity(intent);
+
+    }
 
 }
