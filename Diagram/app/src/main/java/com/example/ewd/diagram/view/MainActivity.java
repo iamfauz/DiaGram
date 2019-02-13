@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
             );
         }
 
-
         //Get db instance
         mDb = UserDatabase.getInstance(getApplicationContext());
         //Initialize Views
@@ -160,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<AuthResponse> call, Throwable t) {
 
-                        Toast.makeText(MainActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Check your internet connection", Toast.LENGTH_LONG).show();
                     }
                 });
             }

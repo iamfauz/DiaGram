@@ -24,6 +24,9 @@ public class Post  {
     @SerializedName("userType")
     @Expose
     private String userType;
+    @SerializedName("createdAt")
+    @Expose
+    private String createdAt;
     @SerializedName("comments")
     @Expose
     private List<Comment> comments = null;
@@ -68,6 +71,13 @@ public class Post  {
         this.comments = comments;
     }
 
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public String getUserId() {
         return userId;

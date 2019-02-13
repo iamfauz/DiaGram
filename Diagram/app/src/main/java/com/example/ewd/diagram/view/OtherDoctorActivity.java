@@ -31,6 +31,16 @@ public class OtherDoctorActivity extends AppCompatActivity {
     @BindView(R.id.name)
     TextView nameTextView;
 
+    @BindView(R.id.experience_body)
+    TextView experienceTextView;
+
+    @BindView(R.id.specializations_body)
+    TextView specializationsTextView;
+
+    @BindView(R.id.department_body)
+    TextView departmentTextView;
+
+
     private String userId;
     private String sessionKey;
 
@@ -104,6 +114,10 @@ public class OtherDoctorActivity extends AppCompatActivity {
             nameTextView.setText("-");
         else
             nameTextView.setText(user.getFirstName() + " " + user.getLastName());
+
+        experienceTextView.setText(user.getExperience());
+        specializationsTextView.setText(user.getSpecializations());
+        departmentTextView.setText(user.getDepartment());
 
 
     }

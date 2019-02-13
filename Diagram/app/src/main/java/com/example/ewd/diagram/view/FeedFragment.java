@@ -175,7 +175,7 @@ public class FeedFragment extends Fragment implements PostAdapter.ListItemClickL
 
                 } else {
 
-                    Toast.makeText(getActivity(), "Session Expired", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Session Expired", Toast.LENGTH_LONG).show();
 
                 }
 
@@ -184,7 +184,7 @@ public class FeedFragment extends Fragment implements PostAdapter.ListItemClickL
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
 
-                Toast.makeText(getActivity(), "Check your internet connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Check your internet connection", Toast.LENGTH_LONG).show();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });

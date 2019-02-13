@@ -42,14 +42,20 @@ public class EditDoctorActivity extends AppCompatActivity {
     @BindView(R.id.user_type_image_view)
     ImageView userTypeImageView;
 
-    @BindView(R.id.username)
-    TextView userNameTextView;
-
     @BindView(R.id.first_name)
     EditText firstNameEditText;
 
     @BindView(R.id.last_name)
     EditText lastNameEditText;
+
+    @BindView(R.id.experience_body)
+    EditText experienceEditTextView;
+
+    @BindView(R.id.specializations_body)
+    EditText specializationsEditTextView;
+
+    @BindView(R.id.department_body)
+    EditText departmentEditTextView;
 
     @BindView(R.id.edit)
     Button editButton;
@@ -57,6 +63,10 @@ public class EditDoctorActivity extends AppCompatActivity {
     private User user;
     private String firstName;
     private String lastName;
+    private String experience;
+    private String specializations;
+    private String department;
+
 
     // Member variable for the Database
     private UserDatabase mDb;
@@ -109,10 +119,12 @@ public class EditDoctorActivity extends AppCompatActivity {
         }
         this.user = user;
         userTypeImageView.setImageResource(imgs[1]);
-        userNameTextView.setText(user.getUsername());
+
         firstNameEditText.setText(user.getFirstName());
         lastNameEditText.setText(user.getLastName());
-
+        experienceEditTextView.setText(user.getExperience());
+        specializationsEditTextView.setText(user.getSpecializations());
+        departmentEditTextView.setText(user.getDepartment());
 
     }
 
@@ -139,9 +151,16 @@ public class EditDoctorActivity extends AppCompatActivity {
 
         String firstName = firstNameEditText.getText().toString();
         String lastName = lastNameEditText.getText().toString();
+        String experience = experienceEditTextView.getText().toString();
+        String specializations = specializationsEditTextView.getText().toString();
+        String department = departmentEditTextView.getText().toString();
 
         user.setFirstName(firstName);
         user.setLastName(lastName);
+        user.setExperience(experience);
+        user.setSpecializations(specializations);
+        user.setDepartment(department);
+
 
         /*Create handle for the RetrofitInstance interface*/
         ApiService service = RetrofitClientInstance.getRetrofitInstance().create(ApiService.class);

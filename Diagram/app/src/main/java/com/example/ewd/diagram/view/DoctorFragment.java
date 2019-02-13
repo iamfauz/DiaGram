@@ -52,6 +52,16 @@ public class DoctorFragment extends android.support.v4.app.Fragment {
     @BindView(R.id.name)
     TextView nameTextView;
 
+    @BindView(R.id.experience_body)
+    TextView experienceTextView;
+
+    @BindView(R.id.specializations_body)
+    TextView specializationsTextView;
+
+    @BindView(R.id.department_body)
+    TextView departmentTextView;
+
+
     @BindView(R.id.edit)
     Button editButton;
 
@@ -141,10 +151,12 @@ public class DoctorFragment extends android.support.v4.app.Fragment {
 
         }
 
-
         userTypeImageView.setImageResource(imgs[1]);
         userNameTextView.setText(user.getUsername());
         nameTextView.setText(user.getFirstName() + " " + user.getLastName());
+        experienceTextView.setText(user.getExperience());
+        specializationsTextView.setText(user.getSpecializations());
+        departmentTextView.setText(user.getDepartment());
 
 
     }

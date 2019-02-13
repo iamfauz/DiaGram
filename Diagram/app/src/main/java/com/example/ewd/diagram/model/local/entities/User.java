@@ -36,6 +36,18 @@ public class User {
     @SerializedName("conditions")
     @Expose
     private String conditions;
+    @SerializedName("experience")
+    @Expose
+    private String experience;
+    @SerializedName("department")
+    @Expose
+    private String department;
+    @SerializedName("specializations")
+    @Expose
+    private String specializations;
+
+
+
 
     public String getId() {
         return id;
@@ -91,6 +103,30 @@ public class User {
 
     public void setRecentProcedures(String recentProcedures) {
         this.recentProcedures = recentProcedures;
+    }
+
+    public String getSpecializations() {
+        return specializations;
+    }
+
+    public void setSpecializations(String specializations) {
+        this.specializations = specializations;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
     }
 
     public String getConditions() {

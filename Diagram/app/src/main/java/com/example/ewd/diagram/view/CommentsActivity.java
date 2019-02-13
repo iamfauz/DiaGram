@@ -156,7 +156,7 @@ public class CommentsActivity extends AppCompatActivity implements CommentAdapte
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
 
-                Toast.makeText(getApplicationContext(), "Check your internet connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Check your internet connection", Toast.LENGTH_LONG).show();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });

@@ -3,6 +3,7 @@ package com.example.ewd.diagram.utils;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,9 +108,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostAdapterVie
     public void onBindViewHolder(@NonNull PostAdapterViewHolder holder, int position) {
 
         Post post = mPostList.get(position);
+
         holder.post = post;
         holder.titleTextView.setText(post.getTitle());
         holder.bodyTextView.setText(post.getBody());
+        holder.dateTextView.setText(DateHelper.getDateString(post.getCreatedAt(), "dd MMM, yyyy, hh:mm a"));
 
         //Circular Icon
         int imgIndex;

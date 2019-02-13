@@ -138,6 +138,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                         if (response.isSuccessful()) {
 
+
                             AuthResponse authResponse = response.body();
 
                             //Adding user to local db
@@ -168,7 +169,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<AuthResponse> call, Throwable t) {
 
-                        Toast.makeText(RegistrationActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrationActivity.this, "Check your internet connection", Toast.LENGTH_LONG).show();
                     }
                 });
             }
